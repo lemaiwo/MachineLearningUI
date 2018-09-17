@@ -7,9 +7,9 @@ sap.ui.define([
 			properties: {
 				id: 'string',
 				status: 'string',
-				submissionTime: 'string',
-				startTime: 'string',
-				finishTime: 'string'
+				submissionTime: 'object',
+				startTime: 'object',
+				finishTime: 'object'
 			},
 			aggregations: {
 			},

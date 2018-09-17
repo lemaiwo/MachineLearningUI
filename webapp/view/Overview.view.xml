@@ -84,9 +84,9 @@
 										<cells>
 											<Text text="{id}"/>
 											<Text text="{status}"/>
-											<Text text="{submissionTime}"/>
-											<Text text="{startTime}"/>
-											<Text text="{finishTime}"/>
+											<Text text="{path: 'submissionTime', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/YYYY HH:mm:ss' , UTC:true}}"/>
+											<Text text="{path: 'startTime', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/YYYY HH:mm:ss' , UTC:true}}"/>
+											<Text text="{path: 'finishTime', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/YYYY HH:mm:ss' , UTC:true}}"/>
 											<Button icon="sap-icon://stop" press=".stopJob(${id})"/>
 										</cells>
 									</ColumnListItem>

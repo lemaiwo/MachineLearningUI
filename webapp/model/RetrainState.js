@@ -90,9 +90,9 @@ sap.ui.define([
 						me.addJob(new Job({
 							id: oJob.id,
 							status: oJob.status,
-							submissionTime: oJob.submissionTime,
-							startTime: oJob.startTime,
-							finishTime: oJob.finishTime
+							submissionTime: new Date(oJob.submissionTime),
+							startTime: new Date(oJob.startTime),
+							finishTime: new Date(oJob.finishTime)
 						}));
 					});
 				} catch (ex) {
