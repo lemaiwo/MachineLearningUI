@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:c="sap.suite.ui.commons" xmlns:core="sap.ui.core">
+	<Dialog title="Job config" showHeader="true" contentWidth="550px">
+		<content>
+			<TextArea value="{/newJob}" rows="15" width="100%"/>
+		</content>
+		<buttons>
+			<Button icon="sap-icon://begin" press=".onCreateNewJob"></Button>
+			<Button icon="sap-icon://decline" press=".onClose"></Button>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
