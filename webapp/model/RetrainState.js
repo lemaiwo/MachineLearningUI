@@ -13,13 +13,13 @@ sap.ui.define([
 		metadata: {
 			properties: {
 				config: "string",
-				newJob:"string",
+				newJob: "string",
 				isReady: {
 					type: 'boolean',
 					defaultValue: false
 				},
-				testKey:"string",
-				testResult:"string"
+				testKey: "string",
+				testResult: "string"
 			},
 			aggregations: {
 				models: {
@@ -42,13 +42,19 @@ sap.ui.define([
 			return this.model;
 		},
 		setConfig: function (value) {
-			BusyIndicator.show(0);
 			var me = this;
 			this.setProperty("config", value, true);
 			// this.model.refresh(true);
-			var oConfig = JSON.parse(value);
-			this.setProperty("isReady", false);
-			if (oConfig && oConfig.clientid && oConfig.clientsecret && oConfig.url) {
+			try {
+				var oConfig = JSON.parse(value);
+			} catch (error) {
+				jQuery.sap.log.error("No valid config: " + error);
+				return;
+			}
+			if (oConfig && oConfig.clientid && oConfig.clientsecret && oConfig.url && oConfig.serviceurls && oConfig.serviceurls.IMAGE_RETRAIN_API_URL &&
+				oConfig.serviceurls.IMAGE_CLASSIFIER_URL) {
+				BusyIndicator.show(0);
+				this.setProperty("isReady", false);
 				RetrainService.setClientID(oConfig.clientid);
 				RetrainService.setClientSecret(oConfig.clientsecret);
 				RetrainService.setAuthUrl(oConfig.url);
@@ -171,9 +177,9 @@ sap.ui.define([
 		startJob: function () {
 			var me = this;
 			BusyIndicator.show(0);
-			try{
+			try {
 				var oJob = JSON.parse(this.getNewJob());
-			}catch(error){
+			} catch (error) {
 				jQuery.sap.log.error(error);
 			}
 			return RetrainService.getBearerToken().then(function (token) {
@@ -186,25 +192,25 @@ sap.ui.define([
 				return JSON.parse(jobid.response);
 			});
 		},
-		testModel:function(body){
+		testModel: function (body) {
 			var me = this;
 			BusyIndicator.show(0);
-			try{
+			try {
 				var keys = this.getTestKey().split("--");
 				var name = keys[0];
 				var version = keys[1];
-			}catch(error){
+			} catch (error) {
 				jQuery.sap.log.error(error);
 			}
 			return RetrainService.getBearerToken().then(function (token) {
 				me.tokenInfo = JSON.parse(token);
-				return RetrainService.testModel(me.tokenInfo.access_token, name,version,body);
+				return RetrainService.testModel(me.tokenInfo.access_token, name, version, body);
 			}).catch(function (error) {
 				jQuery.sap.log.error(error);
 				return error.responseText ? error.responseText : error;
 			}).then(function (response) {
 				BusyIndicator.hide();
-				me.setProperty("testResult",response);
+				me.setProperty("testResult", response);
 				return response;
 			});
 		}

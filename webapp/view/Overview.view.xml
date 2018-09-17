@@ -11,7 +11,7 @@
 							</Toolbar>
 						</headerToolbar>
 						<content>
-							<TextArea value="{/config}" rows="10" width="100%"></TextArea>
+							<TextArea value="{/config}" valueLiveUpdate="true" rows="10" width="100%"></TextArea>
 						</content>
 					</Panel>
 					<Panel expandable="true" expanded="true" visible="{/isReady}">
