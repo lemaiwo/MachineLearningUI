@@ -15,12 +15,20 @@ sap.ui.define([
 			this.clientsecret = clientsecret;
 		},
 		setRetrainingURL:function(url){
+			this.retrainingUrl = "";
+			if(url.indexOf("trial") > -1){
+				this.retrainingUrl += "/trial";
+			}
 			url = url.substr(url.indexOf("//")+2);
-			this.retrainingUrl = url.substr(url.indexOf("/"));
+			this.retrainingUrl += url.substr(url.indexOf("/"));
 		},
 		setClassifierURL:function(url){
+			this.classifierURL = "";
+			if(url.indexOf("trial") > -1){
+				this.classifierURL += "/trial";
+			}
 			url = url.substr(url.indexOf("//")+2);
-			this.classifierURL = url.substr(url.indexOf("/"));
+			this.classifierURL += url.substr(url.indexOf("/"));
 		},
 		getBearerToken: function () {
 			var auth = btoa(this.clientid + ":" + this.clientsecret);

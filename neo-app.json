@@ -21,6 +21,24 @@
       "description": "SAPUI5 Test Resources"
     },
     {
+      "path": "/trial/api/v2/image/classification",
+      "target": {
+        "type": "destination",
+        "name": "ml_classifier_trial",
+        "entryPath": "/api/v2/image/classification"
+      },
+      "description": "classifier"
+    },
+    {
+      "path": "/trial/api/v2/image/retraining",
+      "target": {
+        "type": "destination",
+        "name": "ml_retrain_trial",
+        "entryPath": "/api/v2/image/retraining"
+      },
+      "description": "retrain"
+    },
+    {
       "path": "/api/v2/image/classification",
       "target": {
         "type": "destination",

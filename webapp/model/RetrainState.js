@@ -133,9 +133,13 @@ sap.ui.define([
 						me.addModel(oNewModel);
 					});
 				});
+				return true;
+			}).catch(function (error) {
+				jQuery.sap.log.error(error);
+			}).then(function () {
 				BusyIndicator.hide();
 				return true;
-			});
+			});;
 		},
 		undeploy: function (id) {
 			var me = this;
